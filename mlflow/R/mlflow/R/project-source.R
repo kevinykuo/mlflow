@@ -33,6 +33,7 @@ mlflow_source <- function(uri) {
     finally = {
       mlflow_end_run()
       clear_run_params()
+      mlflow_deregister_local_servers()
     }
   )
 

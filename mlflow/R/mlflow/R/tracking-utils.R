@@ -93,3 +93,8 @@ mlflow_user <- function() {
   else
     "unknown"
 }
+
+mlflow_deregister_local_servers <- function() {
+  purrr::walk(as.list(mlflow:::.globals$url_mapping), ~ .x$handle$kill())
+  rlang::env_unbind(mlflow:::.globals, "url_mapping")
+}

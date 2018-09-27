@@ -4,10 +4,5 @@ mlflow_clear_test_dir <- function(path) {
   if (dir.exists(path)) {
     unlink(path, recursive = TRUE)
   }
-  deregister_local_servers()
-}
-
-deregister_local_servers <- function() {
-  purrr::walk(as.list(mlflow:::.globals$url_mapping), ~ .x$handle$kill())
-  rlang::env_unbind(mlflow:::.globals, "url_mapping")
+  mlflow:::mlflow_deregister_local_servers()
 }
