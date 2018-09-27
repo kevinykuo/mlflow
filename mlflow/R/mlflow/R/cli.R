@@ -22,7 +22,7 @@
 #' @importFrom processx process
 #' @importFrom withr with_envvar
 #' @export
-mlflow_cli <- function(..., background = FALSE, echo = TRUE) {
+mlflow_cli <- function(..., background = FALSE, echo = TRUE, stderr_callback = NULL) {
   args <- list(...)
 
   verbose <- mlflow_is_verbose()
@@ -41,7 +41,8 @@ mlflow_cli <- function(..., background = FALSE, echo = TRUE) {
     if (background) {
       result <- process$new(mlflow_bin, args = unlist(args), echo_cmd = verbose, supervise = TRUE)
     } else {
-      result <- run(mlflow_bin, args = unlist(args), echo = echo, echo_cmd = verbose)
+      result <- run(mlflow_bin, args = unlist(args), echo = echo, echo_cmd = verbose,
+                    stderr_callback = stderr_callback)
     }
   })
 

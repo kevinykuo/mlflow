@@ -4,7 +4,8 @@
 \alias{mlflow_cli}
 \title{MLflow Command}
 \usage{
-mlflow_cli(..., background = FALSE, echo = TRUE)
+mlflow_cli(..., background = FALSE, echo = TRUE,
+  stderr_callback = NULL)
 }
 \arguments{
 \item{...}{The parameters to pass to the command line.}
